@@ -5,6 +5,17 @@ const yearElement = document.getElementById('year');
 const themeToggle = document.querySelector('.theme-toggle');
 const revealElements = document.querySelectorAll('.reveal');
 const heroSlides = [...document.querySelectorAll('.hero-bg-slide')];
+const typedText = document.querySelector('.typed-text');
+const typingPhrases = [
+  'Playwright',
+  'QA Automation',
+  'JavaScript',
+  'TypeScript',
+  'CI/CD Pipelines',
+  'Git Repo',
+  'Azure DevOps',
+  'Jira'
+];
 
 if (heroSlides.length) {
   let activeSlideIndex = 0;
@@ -19,7 +30,48 @@ if (heroSlides.length) {
   setInterval(() => {
     activeSlideIndex = (activeSlideIndex + 1) % heroSlides.length;
     showHeroSlide(activeSlideIndex);
-  }, 3000);
+  }, 5000);
+}
+
+if (typedText && typingPhrases.length) {
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const typeLoop = () => {
+    const phrase = typingPhrases[phraseIndex];
+
+    if (!isDeleting) {
+      charIndex += 1;
+      typedText.innerHTML = `
+        <span class="typed-skill">${phrase.slice(0, charIndex)}</span>
+        <span class="typed-check ${charIndex === phrase.length ? 'is-visible' : ''}" aria-hidden="true">✓</span>
+      `;
+
+      if (charIndex === phrase.length) {
+        isDeleting = true;
+        setTimeout(typeLoop, 1200);
+        return;
+      }
+    } else {
+      charIndex -= 1;
+      typedText.innerHTML = `
+        <span class="typed-skill">${phrase.slice(0, charIndex)}</span>
+        <span class="typed-check ${charIndex === 0 ? '' : 'is-visible'}" aria-hidden="true">✓</span>
+      `;
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+      }
+    }
+
+    const speed = isDeleting ? 60 : 120;
+    setTimeout(typeLoop, speed);
+  };
+
+  typedText.innerHTML = '';
+  typeLoop();
 }
 
 const setTheme = (theme) => {
@@ -92,3 +144,36 @@ if ('IntersectionObserver' in window) {
 } else {
   revealElements.forEach((element) => element.classList.add('visible'));
 }
+
+const flowChartImage = document.querySelector('.flow-chart-image');
+const imageModal = document.getElementById('imageModal');
+const imageCloseButton = document.querySelector('.image-close');
+
+if (flowChartImage && imageModal && imageCloseButton) {
+  const closeModal = () => {
+    imageModal.classList.remove('is-open');
+    imageModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  const openModal = () => {
+    imageModal.classList.add('is-open');
+    imageModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  flowChartImage.addEventListener('click', openModal);
+  imageCloseButton.addEventListener('click', closeModal);
+  imageModal.addEventListener('click', (event) => {
+    if (event.target instanceof HTMLElement && event.target.dataset.closeModal === 'true') {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && imageModal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+}
+
