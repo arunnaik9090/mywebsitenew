@@ -775,18 +775,19 @@ body {
 
 .image-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  border: none;
+  top: -14px;
+  right: -14px;
+  width: 44px;
+  height: 44px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(17, 24, 39, 0.9);
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.1rem;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+  z-index: 10;
 }
 
 .tutorial-content-card h1 {
@@ -1034,17 +1035,20 @@ body {
 }
 
 @media (max-width: 900px) {
-  .hero-grid,
-  .about-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
+  .hero {
+    padding-top: 82px;
+    padding-bottom: 70px;
   }
 
-  .skills-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .hero-shell {
+    width: min(100%, calc(100% - 24px));
   }
 
-  .project-grid {
+  .hero-content {
+    width: min(100%, 560px);
+  }
+
+  .footer-card {
     grid-template-columns: 1fr;
   }
 }
@@ -1090,15 +1094,10 @@ body {
     display: flex;
   }
 
-  .stats-grid,
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
   .hero {
     min-height: auto;
     padding-top: 90px;
-    padding-bottom: 56px;
+    padding-bottom: 50px;
   }
 
   .hero-shell {
@@ -1123,6 +1122,22 @@ body {
     font-size: clamp(1.4rem, 6vw, 2.4rem);
   }
 
+  .hero-kicker {
+    letter-spacing: 0.08em;
+    font-size: 0.66rem;
+    line-height: 1.5;
+  }
+
+  .hero-bg-slide {
+    inset: 0;
+    background-position: center center;
+  }
+
+  .code-rain,
+  .hero-particles {
+    opacity: 0.25;
+  }
+
   .highlights-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
@@ -1135,40 +1150,6 @@ body {
 
   .highlight-card span {
     font-size: 1.15rem;
-  }
-
-  .hero-kicker {
-    letter-spacing: 0.1em;
-    font-size: 0.66rem;
-    line-height: 1.5;
-  }
-
-  .hero-bg-slide {
-    inset: 0;
-    background-position: center center;
-  }
-
-  .hero::before {
-    background: linear-gradient(120deg, rgba(2, 10, 18, 0.68), rgba(5, 30, 50, 0.45));
-  }
-
-  .section {
-    padding: 80px 0;
-  }
-
-  .footer-row {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-@media (max-width: 420px) {
-  .highlights-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .highlight-card {
-    min-height: 130px;
   }
 
   .footer-card {
@@ -1195,22 +1176,6 @@ body {
   }
 
   .footer-photo {
-    width: min(100%, 280px);
-    height: 320px;
-  }
-}
-
-@media (max-width: 640px) {
-  .footer-card {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .footer-info {
-    padding: 18px 16px;
-  }
-
-  .footer-photo {
     width: min(100%, 340px);
     height: 360px;
   }
@@ -1228,10 +1193,66 @@ body {
 
   .tutorial-main {
     padding: 0 14px 20px;
+    overflow-x: hidden;
   }
 
   .flow-chart-image {
-    width: min(100%, 560px);
+    width: 100%;
+    max-width: 100%;
     margin-top: 16px;
+  }
+
+  .image-modal-content {
+    width: min(94vw, 760px);
+    padding: 14px 14px 12px;
+  }
+
+  .image-close {
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    top: -12px;
+    right: -12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 42px;
+  }
+
+  .hero-kicker {
+    letter-spacing: 0.06em;
+    font-size: 0.62rem;
+  }
+
+  .hero-line--primary {
+    font-size: clamp(2.2rem, 12vw, 3.2rem);
+  }
+
+  .hero-line--typed {
+    font-size: clamp(1.2rem, 7vw, 1.8rem);
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-card {
+    min-height: 130px;
+  }
+
+  .footer-card {
+    padding: 18px 12px;
+  }
+
+  .footer-info h3 {
+    font-size: 1.7rem;
+  }
+
+  .footer-photo {
+    width: min(100%, 280px);
+    height: 300px;
   }
 }

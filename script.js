@@ -148,8 +148,14 @@ if ('IntersectionObserver' in window) {
 const flowChartImage = document.querySelector('.flow-chart-image');
 const imageModal = document.getElementById('imageModal');
 const imageCloseButton = document.querySelector('.image-close');
+const modalImage = imageModal ? imageModal.querySelector('img') : null;
 
-if (flowChartImage && imageModal && imageCloseButton) {
+if (flowChartImage && imageModal && imageCloseButton && modalImage) {
+  const fallbackImage = 'flow_chart_agile_PBI.png';
+
+  flowChartImage.setAttribute('src', fallbackImage);
+  modalImage.setAttribute('src', fallbackImage);
+
   const closeModal = () => {
     imageModal.classList.remove('is-open');
     imageModal.setAttribute('aria-hidden', 'true');
@@ -157,23 +163,32 @@ if (flowChartImage && imageModal && imageCloseButton) {
   };
 
   const openModal = () => {
+    modalImage.setAttribute('src', flowChartImage.currentSrc || flowChartImage.src || fallbackImage);
     imageModal.classList.add('is-open');
     imageModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   };
 
-  flowChartImage.addEventListener('click', openModal);
-  imageCloseButton.addEventListener('click', closeModal);
-  imageModal.addEventListener('click', (event) => {
+  flowChartImage.onclick = function (event) {
+    event.preventDefault();
+    openModal();
+  };
+
+  imageCloseButton.onclick = function (event) {
+    event.preventDefault();
+    closeModal();
+  };
+
+  imageModal.onclick = function (event) {
     if (event.target instanceof HTMLElement && event.target.dataset.closeModal === 'true') {
       closeModal();
     }
-  });
+  };
 
-  document.addEventListener('keydown', (event) => {
+  document.onkeydown = function (event) {
     if (event.key === 'Escape' && imageModal.classList.contains('is-open')) {
       closeModal();
     }
-  });
+  };
 }
 
