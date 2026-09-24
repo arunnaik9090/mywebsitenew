@@ -742,6 +742,10 @@ body {
   z-index: 2000;
 }
 
+.image-modal[hidden] {
+  display: none !important;
+}
+
 .image-modal.is-open {
   display: flex;
 }

@@ -157,38 +157,48 @@ if (flowChartImage && imageModal && imageCloseButton && modalImage) {
   modalImage.setAttribute('src', fallbackImage);
 
   const closeModal = () => {
+    if (document.activeElement === imageCloseButton) {
+      imageCloseButton.blur();
+    }
+    flowChartImage.focus();
     imageModal.classList.remove('is-open');
     imageModal.setAttribute('aria-hidden', 'true');
+    imageModal.setAttribute('inert', '');
+    imageModal.hidden = true;
     document.body.style.overflow = '';
   };
 
   const openModal = () => {
     modalImage.setAttribute('src', flowChartImage.currentSrc || flowChartImage.src || fallbackImage);
+    imageModal.hidden = false;
     imageModal.classList.add('is-open');
     imageModal.setAttribute('aria-hidden', 'false');
+    imageModal.removeAttribute('inert');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => imageCloseButton.focus());
   };
 
-  flowChartImage.onclick = function (event) {
+  flowChartImage.addEventListener('click', (event) => {
     event.preventDefault();
     openModal();
-  };
+  });
 
-  imageCloseButton.onclick = function (event) {
+  imageCloseButton.addEventListener('click', (event) => {
     event.preventDefault();
     closeModal();
-  };
+  });
 
-  imageModal.onclick = function (event) {
+  imageModal.addEventListener('click', (event) => {
     if (event.target instanceof HTMLElement && event.target.dataset.closeModal === 'true') {
       closeModal();
     }
-  };
+  });
 
-  document.onkeydown = function (event) {
+  document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && imageModal.classList.contains('is-open')) {
       closeModal();
     }
-  };
+  });
 }
+
 
