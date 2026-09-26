@@ -721,6 +721,23 @@ body {
   padding: 0 8px;
 }
 
+.pi-plan-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0 0;
+}
+
+.pi-plan-pdf {
+  display: block;
+  width: min(100%, 1120px);
+  height: 760px;
+  border: 1px solid #dfe7e4;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
 .flow-chart-image {
   display: block;
   width: min(76%, 820px);

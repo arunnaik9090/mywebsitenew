@@ -151,7 +151,7 @@ const imageCloseButton = document.querySelector('.image-close');
 const modalImage = imageModal ? imageModal.querySelector('img') : null;
 
 if (flowChartImage && imageModal && imageCloseButton && modalImage) {
-  const fallbackImage = 'flow_chart_agile_PBI.png';
+  const fallbackImage = flowChartImage.getAttribute('src') || 'flow_chart_agile_PBI.png';
 
   flowChartImage.setAttribute('src', fallbackImage);
   modalImage.setAttribute('src', fallbackImage);
