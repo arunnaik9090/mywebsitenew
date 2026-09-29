@@ -833,6 +833,63 @@ body {
   margin-bottom: 1.2rem;
 }
 
+.tutorial-content-card.manual-content {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 12px 36px;
+}
+
+.tutorial-content-card.manual-content h1 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  margin: 0 0 0.75rem;
+}
+
+.tutorial-content-card.manual-content .manual-intro,
+.tutorial-content-card.manual-content p {
+  max-width: 760px;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #405762;
+  margin-bottom: 0.8rem;
+}
+
+.manual-content .manual-section {
+  border-top: 1px solid #dce5e0;
+  padding: 1.2rem 0;
+}
+
+.manual-content h2 {
+  color: #173b43;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  margin: 0 0 0.7rem;
+}
+
+.manual-content h3 {
+  color: #173b43;
+  font-size: 1rem;
+  margin: 1rem 0 0.4rem;
+}
+
+.manual-content ol,
+.manual-content ul {
+  max-width: 780px;
+  padding-left: 1.35rem;
+  color: #334d5d;
+  line-height: 1.65;
+}
+
+.manual-content li {
+  padding-left: 0.2rem;
+  margin: 0.35rem 0;
+}
+
+.manual-content strong {
+  color: #173b43;
+}
+
 .highlights-section {
   background: #edf2f5;
   padding: 72px 0 88px;

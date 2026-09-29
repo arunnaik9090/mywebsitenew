@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Execution - Manual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <header class="header tutorial-header"><div class="container nav-container">
+      <a href="../../index.html" class="brand">QA<span>Automation</span></a>
+      <div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button><button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button></div>
+      <nav class="nav" aria-label="Main navigation"><a href="../../Agile_header/agile.html">Agile</a><a href="../manual.html">Manual</a><a href="../../index.html#automation">Automation</a><a href="../../index.html#api">API</a></nav>
+    </div></header>
+    <main><section class="agile-subpage"><div class="tutorial-page-shell">
+      <aside class="tutorial-sidebar"><h2 class="tutorial-title">Manual</h2><div class="accordion-collapse collapse show"><div class="accordion-body"><ul>
+        <li class="leftmenu"><a href="test-case-authoring-ai.html">Test Case Authoring Using AI</a></li><li class="leftmenu"><a href="test-review-chart.html">Test Review Chart</a></li><li class="leftmenu"><a href="test-execution.html">Test Execution</a></li><li class="leftmenu"><a href="interview-questions-manual.html">Interview Questions - Manual</a></li><li class="leftmenu"><a href="manual-practical-questions.html">Manual Practical Questions</a></li>
+      </ul></div></div></aside>
+      <div class="tutorial-main"><div class="page-header-strip"><div class="breadcrumb"><a href="../../index.html" class="home-link" aria-label="Go to home page"><span class="home-icon">⌂</span><span>Home</span></a><span class="crumb-separator">›</span><span class="crumb-current">Test Execution</span></div></div>
+        <article class="tutorial-content-card manual-content"><h1>Test Execution</h1><p class="manual-intro">Run approved tests against a known build and environment, record evidence, and report failures with enough detail to reproduce.</p>
+          <section class="manual-section"><h2>Before execution</h2><ul><li>Confirm build, environment, configuration, and test data are correct.</li><li>Check the test run scope, priorities, dependencies, and entry criteria.</li><li>Verify required accounts, devices, services, and permissions are available.</li><li>Record known issues and blockers before starting.</li></ul></section>
+          <section class="manual-section"><h2>Run and record</h2><ol><li>Follow the approved steps in order and use the stated test data.</li><li>Compare actual behavior with each expected result.</li><li>Mark each case Pass, Fail, Blocked, or Not Run; do not mark an unverified case as passed.</li><li>Capture relevant evidence, such as screenshots, timestamps, request IDs, or logs, while protecting sensitive data.</li></ol></section>
+          <section class="manual-section"><h2>When a test fails</h2><p>Recheck the environment and repeat the smallest reliable reproduction. File a defect with build, environment, preconditions, steps, expected and actual results, reproducibility, impact, and sanitized evidence. Link the failing test and retest it after a fix.</p></section>
+          <section class="manual-section"><h2>Close the test run</h2><p>Summarize executed, passed, failed, blocked, and not-run cases. List open defects and residual risks, explain scope changes, and state whether the agreed exit criteria are met.</p></section>
+        </article>
+      </div>
+    </div></section></main>
+    <script src="../../script.js"></script>
+  </body>
+</html>

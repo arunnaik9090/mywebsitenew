@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Case Authoring Using AI - Manual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <header class="header tutorial-header">
+      <div class="container nav-container">
+        <a href="../../index.html" class="brand">QA<span>Automation</span></a>
+        <div class="nav-actions">
+          <button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+          <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        </div>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="../../Agile_header/agile.html">Agile</a>
+          <a href="../manual.html">Manual</a>
+          <a href="../../index.html#automation">Automation</a>
+          <a href="../../index.html#api">API</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="agile-subpage">
+        <div class="tutorial-page-shell">
+          <aside class="tutorial-sidebar">
+            <h2 class="tutorial-title">Manual</h2>
+            <div class="accordion-collapse collapse show"><div class="accordion-body">
+              <ul>
+                <li class="leftmenu"><a href="test-case-authoring-ai.html">Test Case Authoring Using AI</a></li>
+                <li class="leftmenu"><a href="test-review-chart.html">Test Review Chart</a></li>
+                <li class="leftmenu"><a href="test-execution.html">Test Execution</a></li>
+                <li class="leftmenu"><a href="interview-questions-manual.html">Interview Questions - Manual</a></li>
+                <li class="leftmenu"><a href="manual-practical-questions.html">Manual Practical Questions</a></li>
+              </ul>
+            </div></div>
+          </aside>
+          <div class="tutorial-main">
+            <div class="page-header-strip"><div class="breadcrumb">
+              <a href="../../index.html" class="home-link" aria-label="Go to home page"><span class="home-icon">⌂</span><span>Home</span></a>
+              <span class="crumb-separator">›</span><span class="crumb-current">Test Case Authoring Using AI</span>
+            </div></div>
+            <article class="tutorial-content-card manual-content">
+              <h1>Test Case Authoring Using AI</h1>
+              <p class="manual-intro">Use AI to accelerate test design while keeping requirements, risk, and expected behavior under human review.</p>
+              <section class="manual-section">
+                <h2>Authoring workflow</h2>
+                <ol>
+                  <li><strong>Provide context:</strong> include the requirement, user role, business rules, supported platforms, and known constraints.</li>
+                  <li><strong>Ask for coverage:</strong> request positive, negative, boundary, permissions, and failure-recovery scenarios.</li>
+                  <li><strong>Generate structured cases:</strong> ask for an ID, preconditions, steps, test data, expected results, and linked requirement.</li>
+                  <li><strong>Review each result:</strong> verify facts against the source requirement and remove invented behavior or duplicate cases.</li>
+                  <li><strong>Refine and store:</strong> clarify ambiguous steps, add traceability, and publish only reviewed cases to the test repository.</li>
+                </ol>
+              </section>
+              <section class="manual-section">
+                <h2>Prompt starter</h2>
+                <p>“Using only the requirement below, draft manual test cases for [feature]. Cover happy paths, validation errors, boundary values, and relevant roles. Return steps and observable expected results in a table. Mark assumptions separately and do not invent product rules.”</p>
+              </section>
+              <section class="manual-section">
+                <h2>Human review checklist</h2>
+                <ul>
+                  <li>Every expected result is observable and supported by an approved requirement.</li>
+                  <li>Test data is valid, reproducible, and does not contain real personal information.</li>
+                  <li>Cases are independent, traceable, and focused on one behavior.</li>
+                  <li>Security, accessibility, localization, and relevant device variations are considered.</li>
+                </ul>
+              </section>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="../../script.js"></script>
+  </body>
+</html>

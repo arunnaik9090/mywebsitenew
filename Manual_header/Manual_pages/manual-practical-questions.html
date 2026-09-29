@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual Practical Questions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <header class="header tutorial-header"><div class="container nav-container">
+      <a href="../../index.html" class="brand">QA<span>Automation</span></a>
+      <div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button><button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button></div>
+      <nav class="nav" aria-label="Main navigation"><a href="../../Agile_header/agile.html">Agile</a><a href="../manual.html">Manual</a><a href="../../index.html#automation">Automation</a><a href="../../index.html#api">API</a></nav>
+    </div></header>
+    <main><section class="agile-subpage"><div class="tutorial-page-shell">
+      <aside class="tutorial-sidebar"><h2 class="tutorial-title">Manual</h2><div class="accordion-collapse collapse show"><div class="accordion-body"><ul>
+        <li class="leftmenu"><a href="test-case-authoring-ai.html">Test Case Authoring Using AI</a></li><li class="leftmenu"><a href="test-review-chart.html">Test Review Chart</a></li><li class="leftmenu"><a href="test-execution.html">Test Execution</a></li><li class="leftmenu"><a href="interview-questions-manual.html">Interview Questions - Manual</a></li><li class="leftmenu"><a href="manual-practical-questions.html">Manual Practical Questions</a></li>
+      </ul></div></div></aside>
+      <div class="tutorial-main"><div class="page-header-strip"><div class="breadcrumb"><a href="../../index.html" class="home-link" aria-label="Go to home page"><span class="home-icon">⌂</span><span>Home</span></a><span class="crumb-separator">›</span><span class="crumb-current">Manual Practical Questions</span></div></div>
+        <article class="tutorial-content-card manual-content"><h1>Manual Practical Questions</h1><p class="manual-intro">Practice turning realistic product situations into focused, risk-based test ideas.</p>
+          <section class="manual-section"><h2>1. Test a login form</h2><p>Cover valid and invalid credentials, required fields, whitespace, case sensitivity where relevant, locked or disabled accounts, session behavior, password masking, and accessible error messages. Check that authentication failures do not disclose whether an account exists.</p></section>
+          <section class="manual-section"><h2>2. Test a shopping cart quantity field</h2><p>Check minimum and maximum quantities, zero, negative and non-numeric input, stock limits, repeated updates, price recalculation, persistence after refresh, and behavior when inventory changes during checkout.</p></section>
+          <section class="manual-section"><h2>3. Test a file upload</h2><p>Check allowed and disallowed types, size boundaries, empty files, duplicate names, interrupted uploads, progress feedback, safe filename handling, and whether unauthorized users can access uploaded content.</p></section>
+          <section class="manual-section"><h2>4. A defect cannot be reproduced</h2><p>Confirm the reported build, account, data, environment, and exact steps. Ask for timestamps and sanitized evidence, check logs and dependencies, and try nearby input variations. Record what was tried instead of closing the issue without a trace.</p></section>
+          <section class="manual-section"><h2>5. A release is due today and a critical test is blocked</h2><p>Communicate the blocker and its risk immediately, identify a safe alternative or dependency owner, assess related coverage, and present the remaining uncertainty to the release decision-maker. Do not report blocked coverage as passed.</p></section>
+        </article>
+      </div>
+    </div></section></main>
+    <script src="../../script.js"></script>
+  </body>
+</html>
