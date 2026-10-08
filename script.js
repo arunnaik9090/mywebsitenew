@@ -4,7 +4,7 @@ const nav = document.querySelector('.nav');
 const yearElement = document.getElementById('year');
 const themeToggle = document.querySelector('.theme-toggle');
 const revealElements = document.querySelectorAll('.reveal');
-const heroSlides = [...document.querySelectorAll('.hero-bg-slide')];
+const heroSliders = [...document.querySelectorAll('.hero-bg-slider')];
 const typedText = document.querySelector('.typed-text');
 const typingPhrases = [
   'Playwright',
@@ -17,20 +17,27 @@ const typingPhrases = [
   'Jira'
 ];
 
-if (heroSlides.length) {
+if (heroSliders.length) {
+  const slideGroups = heroSliders.map((slider) => [...slider.querySelectorAll('.hero-bg-slide')]);
   let activeSlideIndex = 0;
 
   const showHeroSlide = (nextIndex) => {
-    heroSlides.forEach((slide, index) => {
-      slide.classList.toggle('is-active', index === nextIndex);
+    slideGroups.forEach((slides) => {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('is-active', index === nextIndex);
+      });
     });
   };
 
   showHeroSlide(activeSlideIndex);
-  setInterval(() => {
-    activeSlideIndex = (activeSlideIndex + 1) % heroSlides.length;
-    showHeroSlide(activeSlideIndex);
-  }, 5000);
+  const slideCount = slideGroups[0]?.length ?? 0;
+
+  if (slideCount > 1) {
+    setInterval(() => {
+      activeSlideIndex = (activeSlideIndex + 1) % slideCount;
+      showHeroSlide(activeSlideIndex);
+    }, 5000);
+  }
 }
 
 if (typedText && typingPhrases.length) {
@@ -127,6 +134,49 @@ if (themeToggle) {
   });
 }
 
+document.querySelectorAll('video').forEach((video) => {
+  video.muted = false;
+  video.volume = 1;
+  video.defaultMuted = false;
+});
+
+const mobileVideoQuery = window.matchMedia('(max-width: 640px) and (pointer: coarse)');
+const videoStage = document.querySelector('.video-player-stage');
+const mobileVideo = videoStage?.querySelector('video');
+const mobileFullscreenOpen = videoStage?.querySelector('.mobile-video-fullscreen-open');
+const mobileFullscreenClose = videoStage?.querySelector('.mobile-video-fullscreen-close');
+
+const syncMobileVideoFullscreen = () => {
+  if (!mobileVideo) {
+    return;
+  }
+
+  if (mobileVideoQuery.matches) {
+    mobileVideo.controlsList.add('nofullscreen');
+  } else {
+    mobileVideo.controlsList.remove('nofullscreen');
+  }
+};
+
+syncMobileVideoFullscreen();
+mobileVideoQuery.addEventListener('change', syncMobileVideoFullscreen);
+
+mobileFullscreenOpen?.addEventListener('click', () => {
+  if (videoStage?.requestFullscreen) {
+    videoStage.requestFullscreen().catch(() => mobileVideo?.webkitEnterFullscreen?.());
+  } else {
+    mobileVideo?.webkitEnterFullscreen?.();
+  }
+});
+
+mobileFullscreenClose?.addEventListener('click', () => {
+  if (document.fullscreenElement === videoStage) {
+    document.exitFullscreen();
+  } else {
+    mobileVideo?.webkitExitFullscreen?.();
+  }
+});
+
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -143,6 +193,32 @@ if ('IntersectionObserver' in window) {
   revealElements.forEach((element) => observer.observe(element));
 } else {
   revealElements.forEach((element) => element.classList.add('visible'));
+}
+
+const joinGroupForm = document.querySelector('.join-form');
+
+if (joinGroupForm) {
+  const whatsappGroupLink = 'https://chat.whatsapp.com/L5uASfiYlz5DB4QQ4iTHEk?s=hd&p=i&mlu=4&ilr=4';
+
+  joinGroupForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = joinGroupForm.querySelector('input[name="name"]')?.value?.trim() || 'Not provided';
+    const countryCode = joinGroupForm.querySelector('select[name="country-code"]')?.value || '+91';
+    const mobile = joinGroupForm.querySelector('input[name="mobile"]')?.value?.trim() || 'Not provided';
+
+    const prefilledMessage = encodeURIComponent(
+      `Hi, I want to join the WhatsApp group.\n\n` +
+      `Name: ${name}\n` +
+      `Mobile Number: ${countryCode} ${mobile}\n\n` +
+      `Please approve my request.`
+    );
+
+    const whatsappJoinLink = `https://wa.me/?text=${prefilledMessage}`;
+    window.open(whatsappJoinLink, '_blank');
+    window.open(whatsappGroupLink, '_blank');
+    joinGroupForm.reset();
+  });
 }
 
 const flowChartImage = document.querySelector('.flow-chart-image');
