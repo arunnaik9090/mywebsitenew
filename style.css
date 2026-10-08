@@ -2277,3 +2277,39 @@ body {
     height: 42px;
   }
 }
+
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .footer {
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-content,
+  .hero-title,
+  .hero-line--typed,
+  .typed-text {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero-line--typed,
+  .typed-text {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-social-links a {
+    opacity: 1;
+    animation: none;
+  }
+
+  .join-form input,
+  .join-form select {
+    font-size: 16px;
+  }
+}

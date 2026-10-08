@@ -41,44 +41,51 @@ if (heroSliders.length) {
 }
 
 if (typedText && typingPhrases.length) {
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+  if (window.matchMedia('(max-width: 640px)').matches) {
+    typedText.innerHTML = `
+      <span class="typed-skill">${typingPhrases[0]}</span>
+      <span class="typed-check is-visible" aria-hidden="true">✓</span>
+    `;
+  } else {
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
 
-  const typeLoop = () => {
-    const phrase = typingPhrases[phraseIndex];
+    const typeLoop = () => {
+      const phrase = typingPhrases[phraseIndex];
 
-    if (!isDeleting) {
-      charIndex += 1;
-      typedText.innerHTML = `
-        <span class="typed-skill">${phrase.slice(0, charIndex)}</span>
-        <span class="typed-check ${charIndex === phrase.length ? 'is-visible' : ''}" aria-hidden="true">✓</span>
-      `;
+      if (!isDeleting) {
+        charIndex += 1;
+        typedText.innerHTML = `
+          <span class="typed-skill">${phrase.slice(0, charIndex)}</span>
+          <span class="typed-check ${charIndex === phrase.length ? 'is-visible' : ''}" aria-hidden="true">✓</span>
+        `;
 
-      if (charIndex === phrase.length) {
-        isDeleting = true;
-        setTimeout(typeLoop, 1200);
-        return;
+        if (charIndex === phrase.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 1200);
+          return;
+        }
+      } else {
+        charIndex -= 1;
+        typedText.innerHTML = `
+          <span class="typed-skill">${phrase.slice(0, charIndex)}</span>
+          <span class="typed-check ${charIndex === 0 ? '' : 'is-visible'}" aria-hidden="true">✓</span>
+        `;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+        }
       }
-    } else {
-      charIndex -= 1;
-      typedText.innerHTML = `
-        <span class="typed-skill">${phrase.slice(0, charIndex)}</span>
-        <span class="typed-check ${charIndex === 0 ? '' : 'is-visible'}" aria-hidden="true">✓</span>
-      `;
 
-      if (charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % typingPhrases.length;
-      }
-    }
+      const speed = isDeleting ? 60 : 120;
+      setTimeout(typeLoop, speed);
+    };
 
-    const speed = isDeleting ? 60 : 120;
-    setTimeout(typeLoop, speed);
-  };
-
-  typedText.innerHTML = '';
-  typeLoop();
+    typedText.innerHTML = '';
+    typeLoop();
+  }
 }
 
 const setTheme = (theme) => {
@@ -276,5 +283,4 @@ if (flowChartImage && imageModal && imageCloseButton && modalImage) {
     }
   });
 }
-
 
