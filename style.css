@@ -1987,3 +1987,293 @@ body {
     height: 300px;
   }
 }
+
+/* Keep the portfolio readable between desktop and phone layouts. */
+@media (min-width: 641px) and (max-width: 1100px) {
+  .nav-container {
+    min-height: 72px;
+  }
+
+  .nav {
+    gap: 0.55rem;
+  }
+
+  .nav a {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.76rem;
+  }
+
+  .nav-actions {
+    margin-right: 0.65rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 68px;
+    padding-bottom: 58px;
+  }
+
+  .hero-shell {
+    width: min(100% - 40px, 700px);
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-pathways {
+    width: 100%;
+  }
+
+  .footer-about {
+    grid-template-columns: minmax(0, 1.3fr) minmax(210px, 0.7fr);
+    gap: 18px;
+    padding: 22px 18px;
+  }
+
+  .footer-photo {
+    height: 340px;
+  }
+
+  .footer-join-card {
+    padding: 24px 20px;
+  }
+
+  .join-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .join-form button {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-container {
+    min-height: 68px;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+  }
+
+  .nav-actions {
+    margin: 0 0 0 auto;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nav {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 0.3rem);
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(9, 17, 29, 0.98);
+    box-shadow: var(--shadow);
+  }
+
+  body.light-theme .nav {
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    width: 100%;
+    padding: 0.8rem 0.9rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 64px;
+    padding-bottom: 44px;
+  }
+
+  .hero-shell {
+    width: calc(100% - 36px);
+    gap: 20px;
+  }
+
+  .hero-content {
+    min-width: 0;
+  }
+
+  .hero-pathways {
+    min-width: 0;
+  }
+
+  .ai-sustainability-spotlight {
+    padding: 42px 0 48px;
+  }
+
+  .ai-sustainability-points {
+    padding: 0.9rem 1rem;
+  }
+
+  .ai-sustainability-points ol {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .footer-join-card {
+    padding: 22px 18px;
+  }
+
+  .join-form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .join-form button {
+    width: 100%;
+  }
+
+  .footer-social-links {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .hero {
+    padding-top: 56px;
+  }
+
+  .hero-kicker {
+    max-width: 100%;
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+  }
+
+  .hero-pathways-heading {
+    padding-right: 0;
+  }
+
+  .hero-robot-walker {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .hero-pathway-link {
+    min-height: 46px;
+    font-size: 0.84rem;
+  }
+
+  .highlights-section {
+    min-height: 0;
+    padding: 40px 0;
+  }
+
+  .highlights-grid {
+    gap: 12px;
+  }
+
+  .highlight-card {
+    min-width: 0;
+    min-height: 150px;
+  }
+
+  .highlight-card span {
+    font-size: 1.15rem;
+  }
+
+  .footer-about,
+  .footer-join-card {
+    width: calc(100% - 32px);
+  }
+
+  .footer-about {
+    gap: 14px;
+  }
+
+  .footer-photo {
+    width: min(100%, 300px);
+    height: 320px;
+  }
+
+  .join-header h3 {
+    font-size: clamp(1.65rem, 8vw, 2.2rem);
+  }
+
+  .join-form label {
+    min-width: 0;
+  }
+
+  .phone-input-wrap {
+    gap: 8px;
+  }
+
+  .join-form select {
+    min-width: 82px;
+    width: 82px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container,
+  .hero-shell {
+    width: calc(100% - 28px);
+  }
+
+  .brand {
+    font-size: 1.05rem;
+  }
+
+  .nav-actions {
+    gap: 0.45rem;
+  }
+
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-toggle {
+    width: 40px;
+  }
+
+  .hero-line--primary {
+    font-size: clamp(2rem, 11.5vw, 2.7rem);
+  }
+
+  .hero-line--typed {
+    font-size: clamp(1.15rem, 6.6vw, 1.55rem);
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-card {
+    min-height: 126px;
+  }
+
+  .footer-join-card {
+    padding: 19px 14px;
+  }
+
+  .footer-social-links {
+    gap: 9px;
+  }
+
+  .footer-social-links a {
+    width: 42px;
+    height: 42px;
+  }
+}
