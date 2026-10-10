@@ -1633,6 +1633,11 @@ body {
   padding-right: 2.1rem;
 }
 
+.join-form .gender-select {
+  width: 100%;
+  min-width: 0;
+}
+
 .join-form input::placeholder {
   color: rgba(17, 24, 39, 0.5);
 }

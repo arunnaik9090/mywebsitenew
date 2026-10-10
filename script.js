@@ -205,18 +205,28 @@ if ('IntersectionObserver' in window) {
 const joinGroupForm = document.querySelector('.join-form');
 
 if (joinGroupForm) {
-  const whatsappGroupLink = 'https://chat.whatsapp.com/L5uASfiYlz5DB4QQ4iTHEk?s=hd&p=i&mlu=4&ilr=4';
+  const whatsappGroupLinks = {
+    Female: 'https://chat.whatsapp.com/IpK8H3EYI7aFtRoirf3umk',
+    Male: 'https://chat.whatsapp.com/L5uASfiYlz5DB4QQ4iTHEk'
+  };
 
   joinGroupForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const name = joinGroupForm.querySelector('input[name="name"]')?.value?.trim() || 'Not provided';
+    const gender = joinGroupForm.querySelector('select[name="gender"]')?.value;
     const countryCode = joinGroupForm.querySelector('select[name="country-code"]')?.value || '+91';
     const mobile = joinGroupForm.querySelector('input[name="mobile"]')?.value?.trim() || 'Not provided';
+    const whatsappGroupLink = whatsappGroupLinks[gender];
+
+    if (!whatsappGroupLink) {
+      return;
+    }
 
     const prefilledMessage = encodeURIComponent(
       `Hi, I want to join the WhatsApp group.\n\n` +
       `Name: ${name}\n` +
+      `Gender: ${gender}\n` +
       `Mobile Number: ${countryCode} ${mobile}\n\n` +
       `Please approve my request.`
     );
@@ -283,4 +293,3 @@ if (flowChartImage && imageModal && imageCloseButton && modalImage) {
     }
   });
 }
-
