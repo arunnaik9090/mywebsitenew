@@ -40,6 +40,39 @@ if (heroSliders.length) {
   }
 }
 
+const heroFeatureSlider = document.querySelector('.hero-feature-slider');
+
+if (heroFeatureSlider) {
+  const featureSlides = [...heroFeatureSlider.querySelectorAll('.hero-feature-slide')];
+  const featureButtons = [...heroFeatureSlider.querySelectorAll('.hero-feature-pagination button')];
+  let activeFeatureIndex = featureSlides.findIndex((slide) => slide.classList.contains('is-active'));
+  activeFeatureIndex = activeFeatureIndex < 0 ? 0 : activeFeatureIndex;
+
+  const showFeatureSlide = (nextIndex) => {
+    activeFeatureIndex = nextIndex;
+    featureSlides.forEach((slide, index) => {
+      const isActive = index === activeFeatureIndex;
+      slide.classList.toggle('is-active', isActive);
+      slide.setAttribute('aria-hidden', String(!isActive));
+    });
+    featureButtons.forEach((button, index) => {
+      const isActive = index === activeFeatureIndex;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+  };
+
+  featureButtons.forEach((button, index) => {
+    button.addEventListener('click', () => showFeatureSlide(index));
+  });
+
+  if (featureSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => {
+      showFeatureSlide((activeFeatureIndex + 1) % featureSlides.length);
+    }, 5000);
+  }
+}
+
 if (typedText && typingPhrases.length) {
   if (window.matchMedia('(max-width: 640px)').matches) {
     typedText.innerHTML = `
@@ -213,28 +246,15 @@ if (joinGroupForm) {
   joinGroupForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const name = joinGroupForm.querySelector('input[name="name"]')?.value?.trim() || 'Not provided';
     const gender = joinGroupForm.querySelector('select[name="gender"]')?.value;
-    const countryCode = joinGroupForm.querySelector('select[name="country-code"]')?.value || '+91';
-    const mobile = joinGroupForm.querySelector('input[name="mobile"]')?.value?.trim() || 'Not provided';
     const whatsappGroupLink = whatsappGroupLinks[gender];
 
     if (!whatsappGroupLink) {
+      console.error(`No WhatsApp group link configured for gender: ${gender || '(not selected)'}`);
       return;
     }
 
-    const prefilledMessage = encodeURIComponent(
-      `Hi, I want to join the WhatsApp group.\n\n` +
-      `Name: ${name}\n` +
-      `Gender: ${gender}\n` +
-      `Mobile Number: ${countryCode} ${mobile}\n\n` +
-      `Please approve my request.`
-    );
-
-    const whatsappJoinLink = `https://wa.me/?text=${prefilledMessage}`;
-    window.open(whatsappJoinLink, '_blank');
-    window.open(whatsappGroupLink, '_blank');
-    joinGroupForm.reset();
+    window.open(whatsappGroupLink, '_blank', 'noopener,noreferrer');
   });
 }
 
