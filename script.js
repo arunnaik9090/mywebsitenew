@@ -3,6 +3,7 @@ const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.nav');
 const yearElement = document.getElementById('year');
 const themeToggle = document.querySelector('.theme-toggle');
+const backToTopButton = document.querySelector('.back-to-top');
 const revealElements = document.querySelectorAll('.reveal');
 const heroSliders = [...document.querySelectorAll('.hero-bg-slider')];
 const typedText = document.querySelector('.typed-text');
@@ -137,6 +138,23 @@ setTheme(preferredTheme);
 
 if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
+}
+
+if (backToTopButton) {
+  const updateBackToTopVisibility = () => {
+    const isVisible = window.scrollY > 300;
+    backToTopButton.classList.toggle('is-visible', isVisible);
+    backToTopButton.setAttribute('aria-hidden', String(!isVisible));
+    backToTopButton.tabIndex = isVisible ? 0 : -1;
+  };
+
+  window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+  updateBackToTopVisibility();
+
+  backToTopButton.addEventListener('click', () => {
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    window.scrollTo({ top: 0, behavior });
+  });
 }
 
 if (navToggle && nav) {
