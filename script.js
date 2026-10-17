@@ -214,9 +214,9 @@ const syncMobileVideoFullscreen = () => {
   }
 
   if (mobileVideoQuery.matches) {
-    mobileVideo.controlsList.add('nofullscreen');
+    mobileVideo.controlsList?.add('nofullscreen');
   } else {
-    mobileVideo.controlsList.remove('nofullscreen');
+    mobileVideo.controlsList?.remove('nofullscreen');
   }
 };
 
@@ -246,15 +246,12 @@ const videoDialogClose = videoDialog?.querySelector('.qa-video-dialog__close');
 const videoDialogStatus = videoDialog?.querySelector('.qa-video-dialog__status');
 const videoStageParent = videoStage?.parentElement;
 
-watchVideoButton?.addEventListener('click', () => {
+const openVideoDialog = () => {
   if (!videoDialog || !videoDialogPlayer || !videoStage || !mobileVideo) {
     return;
   }
 
   videoDialogStatus.textContent = '';
-  mobileVideo.pause();
-  mobileVideo.muted = false;
-  mobileVideo.defaultMuted = false;
   videoDialogPlayer.append(videoStage);
   videoDialog.showModal();
   mobileVideo.play().catch(() => {
@@ -262,6 +259,23 @@ watchVideoButton?.addEventListener('click', () => {
       videoDialogStatus.textContent = 'Video could not start automatically. Use the video controls to play it.';
     }
   });
+};
+
+watchVideoButton?.addEventListener('click', (event) => {
+  if (!videoDialog || !videoDialogPlayer || !videoStage || !mobileVideo) {
+    return;
+  }
+
+  if (mobileVideoQuery.matches || typeof mobileVideo.webkitEnterFullscreen === 'function') {
+    return;
+  }
+
+  event.preventDefault();
+  videoDialogStatus.textContent = '';
+  mobileVideo.pause();
+  mobileVideo.muted = false;
+  mobileVideo.defaultMuted = false;
+  openVideoDialog();
 });
 
 videoDialogClose?.addEventListener('click', () => {
@@ -277,6 +291,13 @@ videoDialog?.addEventListener('close', () => {
   if (videoStage && videoStageParent) {
     videoStageParent.append(videoStage);
   }
+  watchVideoButton?.focus();
+});
+
+mobileVideo?.addEventListener('webkitendfullscreen', () => {
+  mobileVideo.pause();
+  mobileVideo.muted = true;
+  mobileVideo.defaultMuted = true;
   watchVideoButton?.focus();
 });
 
