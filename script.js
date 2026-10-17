@@ -193,6 +193,10 @@ if (themeToggle) {
 }
 
 document.querySelectorAll('video').forEach((video) => {
+  if (video.hasAttribute('data-muted-autoplay')) {
+    return;
+  }
+
   video.muted = false;
   video.volume = 1;
   video.defaultMuted = false;
@@ -233,6 +237,47 @@ mobileFullscreenClose?.addEventListener('click', () => {
   } else {
     mobileVideo?.webkitExitFullscreen?.();
   }
+});
+
+const watchVideoButton = document.querySelector('#qa-watch-video');
+const videoDialog = document.querySelector('#qa-video-dialog');
+const videoDialogPlayer = videoDialog?.querySelector('.qa-video-dialog__player');
+const videoDialogClose = videoDialog?.querySelector('.qa-video-dialog__close');
+const videoDialogStatus = videoDialog?.querySelector('.qa-video-dialog__status');
+const videoStageParent = videoStage?.parentElement;
+
+watchVideoButton?.addEventListener('click', () => {
+  if (!videoDialog || !videoDialogPlayer || !videoStage || !mobileVideo) {
+    return;
+  }
+
+  videoDialogStatus.textContent = '';
+  mobileVideo.pause();
+  mobileVideo.muted = false;
+  mobileVideo.defaultMuted = false;
+  videoDialogPlayer.append(videoStage);
+  videoDialog.showModal();
+  mobileVideo.play().catch(() => {
+    if (videoDialog.open) {
+      videoDialogStatus.textContent = 'Video could not start automatically. Use the video controls to play it.';
+    }
+  });
+});
+
+videoDialogClose?.addEventListener('click', () => {
+  videoDialog?.close();
+});
+
+videoDialog?.addEventListener('close', () => {
+  mobileVideo?.pause();
+  if (mobileVideo) {
+    mobileVideo.muted = true;
+    mobileVideo.defaultMuted = true;
+  }
+  if (videoStage && videoStageParent) {
+    videoStageParent.append(videoStage);
+  }
+  watchVideoButton?.focus();
 });
 
 if ('IntersectionObserver' in window) {
